@@ -1,9 +1,10 @@
 <?php
 
-namespace App\Http\Controller;
+namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Car;
 
 class CarController extends Controller
 {
@@ -25,7 +26,7 @@ class CarController extends Controller
      */
     public function create()
     {
-        //
+        return view('cars.create');
     }
 
     /**
@@ -36,7 +37,9 @@ class CarController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $newCar = Car::create($request);
+
+        return redirect()->route('cars.index');
     }
 
     /**
