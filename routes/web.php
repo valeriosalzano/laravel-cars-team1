@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Guest\PageController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Guest\CarController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,3 +16,4 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [PageController::class, 'index']);
+Route::resource('cars', CarController::class);
