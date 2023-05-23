@@ -2,7 +2,7 @@
 
 use App\Http\Controllers\Guest\PageController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Guest\CarController;
+use App\Http\Controllers\CarController;
 
 /*
 |--------------------------------------------------------------------------
