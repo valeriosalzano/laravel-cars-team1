@@ -53,7 +53,8 @@ class CarController extends Controller
      */
     public function show($id)
     {
-        //
+        $car = Car::findOrFail($id);
+        return view('cars.show', compact('car'));
     }
 
     /**
@@ -87,6 +88,9 @@ class CarController extends Controller
      */
     public function destroy($id)
     {
-        //
+
+        $cars = Car::findOrFAil($id);
+        $cars->delete();
+        return redirect()->route('cars.index');
     }
 }
