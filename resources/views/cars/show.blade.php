@@ -1,5 +1,5 @@
 @extends('layouts.app')
-
+@section('page-title','Car Details')
 @section('content')
 
 <hr class="border border-danger border-2 opacity-75">

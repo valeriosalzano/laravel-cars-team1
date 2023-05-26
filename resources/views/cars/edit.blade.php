@@ -1,5 +1,5 @@
 @extends('layouts.app')
-
+@section('page-title','Edit Car')
 @section('content')
     <form method="POST" action="{{ route('cars.update', ['car' => $car->id]) }}">
 

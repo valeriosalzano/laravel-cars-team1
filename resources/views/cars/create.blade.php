@@ -1,5 +1,5 @@
 @extends('layouts.app')
-
+@section('page-title','Create Car')
 @section('content')
 
 <h2 class="fs-4 text-secondary my-4">Create new project</h2>

@@ -5,6 +5,4 @@
         </div>
     </nav>
 </header>
-<h2 class="text-center display-5 my-2">
-    @yield('page-title','')
-</h2>
+
