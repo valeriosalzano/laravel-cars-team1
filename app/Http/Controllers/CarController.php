@@ -38,11 +38,13 @@ class CarController extends Controller
      */
     public function store(StoreCarRequest $request)
     {
+
         $form_data = $request->validated();
 
         $newCar = Car::create($form_data);
 
         return redirect()->route('admin.cars.show', ['car' => $newCar->id])->with('status', 'Car created!');
+
     }
 
     /**
@@ -63,9 +65,9 @@ class CarController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Car $car)
     {
-        //
+        return view('cars.edit', compact('car'));
     }
 
     /**
@@ -75,9 +77,11 @@ class CarController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Car $car)
     {
-        //
+        $form_data = $request->all();
+        $car->update($form_data);
+        return redirect()->route('cars.show', ['car' => $car->id]);
     }
 
     /**
