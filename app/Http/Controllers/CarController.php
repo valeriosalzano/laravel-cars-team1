@@ -37,7 +37,7 @@ class CarController extends Controller
      */
     public function store(Request $request)
     {
-        
+
         $newCar = Car::create($request);
         return redirect()->route('cars.index');
     }
@@ -72,9 +72,11 @@ class CarController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Car $car)
     {
-        //
+        $form_data = $request->all();
+        $car->update($form_data);
+        return redirect()->route('cars.show', ['car' => $car->id]);
     }
 
     /**

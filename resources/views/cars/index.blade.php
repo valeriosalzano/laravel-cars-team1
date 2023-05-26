@@ -1,7 +1,6 @@
 @extends('layouts.app')
 @section('content')
-
-    <a class="btn btn-success" href="{{ route('cars.create')}}">Crea una nuova macchina</a>
+    <a class="btn btn-success" href="{{ route('cars.create') }}">Crea una nuova macchina</a>
     <table class="table table-striped">
 
         <thead>
@@ -42,7 +41,7 @@
         </tbody>
     </table>
 
-            
+
 
 
     {{-- modals --}}
@@ -64,5 +63,4 @@
             </div>
         </div>
     </div>
-
 @endsection
