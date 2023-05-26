@@ -37,8 +37,8 @@ class CarController extends Controller
      */
     public function store(Request $request)
     {
+        
         $newCar = Car::create($request);
-
         return redirect()->route('cars.index');
     }
 
@@ -50,7 +50,8 @@ class CarController extends Controller
      */
     public function show($id)
     {
-        //
+        $car = Car::findOrFail($id);
+        return view('cars.show', compact('car'));
     }
 
     /**
