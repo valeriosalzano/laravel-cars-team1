@@ -15,5 +15,5 @@ use App\Http\Controllers\CarController;
 |
 */
 
-Route::get('/', [PageController::class, 'index']);
+Route::get('/', [PageController::class, 'index'])->name('home');
 Route::resource('cars', CarController::class);
