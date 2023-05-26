@@ -8,10 +8,12 @@
     <!-- Styles -->
     @vite('resources/js/app.js')
 
-    <title>Document</title>
+    <title>{{ config('app.name', 'Laravel') }}</title>
 </head>
 <body>
 
+    @include('partials.header')
+    
     <div class="container">
         @yield('content')
     </div>
