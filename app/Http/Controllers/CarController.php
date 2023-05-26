@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreCarRequest;
 use Illuminate\Http\Request;
 use App\Models\Car;
 
@@ -22,7 +23,7 @@ class CarController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+
      */
     public function create()
     {
@@ -33,13 +34,15 @@ class CarController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+ 
      */
-    public function store(Request $request)
+    public function store(StoreCarRequest $request)
     {
-        
-        $newCar = Car::create($request);
-        return redirect()->route('cars.index');
+        $form_data = $request->validated();
+
+        $newCar = Car::create($form_data);
+
+        return redirect()->route('admin.cars.show', ['car' => $newCar->id])->with('status', 'Car created!');
     }
 
     /**
