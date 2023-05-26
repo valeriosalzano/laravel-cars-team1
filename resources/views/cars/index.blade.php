@@ -1,6 +1,7 @@
 @extends('layouts.app')
+@section('page-title','Cars List')
 @section('content')
-    <a class="btn btn-success" href="{{ route('cars.create') }}">Crea una nuova macchina</a>
+    <a class="btn btn-success my-2" href="{{ route('cars.create') }}">Crea una nuova macchina</a>
     <table class="table table-striped">
 
         <thead>
