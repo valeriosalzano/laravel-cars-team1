@@ -60,9 +60,9 @@ class CarController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Car $car)
     {
-        //
+        return view('cars.edit', compact('car'));
     }
 
     /**
