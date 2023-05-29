@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreCarRequest;
+use App\Http\Requests\UpdateCarRequest;
 use Illuminate\Http\Request;
 use App\Models\Car;
+use App\Models\Optional;
 
 class CarController extends Controller
 {
@@ -27,7 +29,9 @@ class CarController extends Controller
      */
     public function create()
     {
-        return view('cars.create');
+        $optionals = Optional::all();
+
+        return view('cars.create',compact('optionals'));
     }
 
     /**
@@ -43,7 +47,11 @@ class CarController extends Controller
 
         $newCar = Car::create($form_data);
 
-        return redirect()->route('admin.cars.show', ['car' => $newCar->id])->with('status', 'Car created!');
+        if ($request->has('optionals')) {
+            $newCar->optionals()->attach($request->optionals);
+        }
+
+        return redirect()->route('cars.show', ['car' => $newCar->id])->with('status', 'Car created!');
 
     }
 
@@ -55,6 +63,7 @@ class CarController extends Controller
      */
     public function show($id)
     {
+        // $optionals = Optional::all();
         $car = Car::findOrFail($id);
         return view('cars.show', compact('car'));
     }
@@ -67,7 +76,8 @@ class CarController extends Controller
      */
     public function edit(Car $car)
     {
-        return view('cars.edit', compact('car'));
+        $optionals = Optional::all();
+        return view('cars.edit', compact('car','optionals'));
     }
 
     /**
@@ -77,9 +87,12 @@ class CarController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Car $car)
+    public function update(UpdateCarRequest $request, Car $car)
     {
         $form_data = $request->all();
+
+        $car->optionals()->sync($request->optionals);
+
         $car->update($form_data);
         return redirect()->route('cars.show', ['car' => $car->id]);
     }

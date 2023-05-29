@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('page-title','Edit Car')
+@section('page-title', 'Edit Car')
 @section('content')
     <form method="POST" action="{{ route('cars.update', ['car' => $car->id]) }}">
 
@@ -31,5 +31,26 @@
         <button type="submit" class="btn btn-primary">Modifica</button>
         <a class="btn btn-primary" href="{{ route('cars.index') }}">Back</a>
 
+        <div class="mb-3">
+            <p>Optionals</p>
+            <ul class="list-group">
+                @foreach ($optionals as $index => $optional)
+                    <li class="list-group-item">
+                        <input class="form-check-input me-1" type="checkbox" name="optionals[]"
+                            id="{{ 'optionals' }}_{{ $index }}" value="{{ $optional->id }}"
+                            @if ($errors->any()) @checked(in_array($optional->id, old('optionals',[])))
+                            @else
+                                @checked($car->optionals->contains($optional->id)) @endif>
+                        <label class="form-check-label"
+                            for="{{ 'optionals' }}_{{ $index }}">{{ $optional->name }}</label>
+                    </li>
+                @endforeach
+                @error('optionals')
+                    <div class="invalid-feedback">
+                        {{ $message }}
+                    </div>
+                @enderror
+            </ul>
+        </div>
     </form>
 @endsection
