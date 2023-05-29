@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('page-title','Cars List')
+@section('page-title', 'Cars List')
 @section('content')
     <a class="btn btn-success my-2" href="{{ route('cars.create') }}">Crea una nuova macchina</a>
     <table class="table table-striped">
@@ -12,7 +12,7 @@
                 <th scope="col">Prezzo</th>
                 <th scope="col">Cilindrata</th>
                 <th scope="col">Anno</th>
-
+                <th scope="col">Optional</th>
                 <th scope="col">Azioni</th>
 
             </tr>
@@ -26,6 +26,13 @@
                     <td>{{ $car->price }}</td>
                     <td>{{ $car->cc }}</td>
                     <td>{{ $car->year_release }}</td>
+                    <td>
+                        @forelse ($car->optionals as $optional)
+                            <span class="badge rounded-pill text-bg-primary p-1">{{ $optional->name }}</span>
+                        @empty
+                            <span class="badge rounded-pill text-bg-danger p-1">{{ 'Non ci sono optional' }}</span>
+                        @endforelse
+                    </td>
 
                     <td class="d-flex">
                         <a class="btn btn-primary m-2" href="{{ route('cars.show', [$car->id]) }}">Mostra Dettagli</a>
